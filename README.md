@@ -1,12 +1,10 @@
 
 # TPs et Projets module Architecture JEE et Middlewares
 
+<h2 align="center">TPs</h2>
 
+📁 [<b>TP1 : Inversion de contrôle et Injection des dépendances</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP1)
 
+<h2 align="center">Projets</h2>
 
-├───![repo](:https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/Repository.svg).
-    ├───![repo](:https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/Repository.svg)Projects
-    │   └───
-    ├───![repo](:https://cdn.jsdelivr.net/gh/Readme-Workflows/Readme-Icons@main/icons/octicons/Repository.svg)TPs
-    │   └───[TP1](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP1)
-
+📁 mini-Projet1
