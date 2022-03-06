@@ -7,4 +7,4 @@
 
 <h2 align="center">Projets</h2>
 
-📁 mini-Projet1
+📁 [<b>Mini Projet 1 : Framework d'Injection des dépendances</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Projets/mProjet1_framework)
