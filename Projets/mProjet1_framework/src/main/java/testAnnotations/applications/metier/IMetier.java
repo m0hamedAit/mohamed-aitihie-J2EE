@@ -1,4 +1,4 @@
-package test.metier;
+package testAnnotations.applications.metier;
 
 public interface IMetier {
     int calcul();

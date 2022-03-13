@@ -1,6 +1,6 @@
-package test.metier;
+package testXML.metier;
 
-import test.dao.IDao;
+import testXML.dao.IDao;
 
 public class MetierImplWS implements IMetier {
     private IDao dao;

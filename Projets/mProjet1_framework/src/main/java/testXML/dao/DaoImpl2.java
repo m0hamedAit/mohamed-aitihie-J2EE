@@ -1,4 +1,4 @@
-package test.dao;
+package testXML.dao;
 
 
 public class DaoImpl2 implements IDao{
