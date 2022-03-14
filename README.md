@@ -4,6 +4,8 @@
 <h2 align="center">TPs</h2>
 
 📁 [<b>TP1 : Inversion de contrôle et Injection des dépendances</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP1)
+📁 [<b>TP2 : JPA activité pratique</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP2)
+
 
 <h2 align="center">Projets</h2>
 
