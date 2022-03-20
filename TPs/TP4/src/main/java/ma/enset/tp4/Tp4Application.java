@@ -27,7 +27,7 @@ public class Tp4Application {
 
             User u2 = new User();
             u2.setUsername("admin");
-            u2.setUsername("admin");
+            u2.setPassword("admin");
             userService.addUser(u2);
 
             Stream.of("STUDENT","ADMIN","USER").forEach(r->{
@@ -41,6 +41,16 @@ public class Tp4Application {
             userService.addRoleToUser("admin", "ADMIN");
             userService.addRoleToUser("admin", "USER");
 
+            try{
+                User user = userService.authenticate("user1","userrrr");
+                System.out.println(user.getUsername());
+                System.out.println("Roles : ");
+                user.getRoles().forEach(r->{
+                    System.out.println("\t"+r.getRoleName());
+                });
+            }catch(Exception exception){
+                exception.printStackTrace();
+            }
 
         };
     }
