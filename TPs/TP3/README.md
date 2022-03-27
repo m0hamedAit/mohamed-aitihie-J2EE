@@ -9,7 +9,7 @@
 
 
 <details><summary> <h2>Enoncé</h2> </summary>
-Reprendre les exemples de mapping objet relationnel avec JPA, Hibernate et Spring Data :
+Reprendre les exemples de mapping objet relationnel avec JPA, Hibernate et Spring Data :<br>
 - Cas  de Patient, Medecin, Rendez-vous, Consultation
 </details>
 
