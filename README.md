@@ -7,7 +7,7 @@
 📁 [<b>TP2 : JPA activité pratique</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP2)<br/>
 📁 [<b>TP3 : Mapping objet relationnel avec JPA, Hibernate et Spring Data : Cas  de Patient, Medecin, Rendez-vous, Consultation</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP3)<br/>
 📁 [<b>TP4 :  Mapping objet relationnel avec JPA, Hibernate et Spring Data : Cas de Users et Roles</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP4)<br/>
-
+📁 [<b>TP5 :  Activité Pratique Spring MVC Thymeleaf</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/TPs/TP5)<br/>
 
 
 <h2 align="center">Projets</h2>
