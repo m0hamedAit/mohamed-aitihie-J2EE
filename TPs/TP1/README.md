@@ -50,7 +50,7 @@ Rendre un compte rendu en reprenant l'exemple traité dans les vidéos des deux 
 <img src="assets/statiqueInst.PNG"/>
 <li> Par instanciation dynamique</li>
 <b>Fichier</b> <code>config.txt</code><br>
-<img src="assets/conf.PNG"/>
+  <img src="assets/conf.PNG"/></br>
 <img src="assets/dynamicInst.PNG"/>
 <li>En utilisant le Framework Spring
   <ul>
