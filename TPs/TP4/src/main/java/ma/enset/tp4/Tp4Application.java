@@ -17,7 +17,7 @@ public class Tp4Application {
         SpringApplication.run(Tp4Application.class, args);
     }
 
-    @Bean  // chaque methode avec l'annotation @Bean, s'execute au demarrage de l'app
+    @Bean
     CommandLineRunner start(UserService userService){
         return args->{
             User u1 = new User();
@@ -55,3 +55,4 @@ public class Tp4Application {
         };
     }
 }
+

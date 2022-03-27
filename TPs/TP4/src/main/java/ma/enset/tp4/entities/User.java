@@ -22,3 +22,4 @@ public class User {
     @ManyToMany(mappedBy="users", fetch=FetchType.EAGER)
     private List<Role> roles = new ArrayList<>();  // pour eviter NullPointerException
 }
+

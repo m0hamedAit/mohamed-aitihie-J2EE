@@ -25,3 +25,5 @@ public class Role {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<User> users = new ArrayList<>();
 }
+
+

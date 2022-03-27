@@ -14,3 +14,4 @@ public interface UserService {
 
     User authenticate(String userName, String password);
 }
+
