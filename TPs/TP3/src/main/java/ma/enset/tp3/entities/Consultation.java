@@ -20,5 +20,3 @@ public class Consultation {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private RendezVous rendezVous;
 }
-
-

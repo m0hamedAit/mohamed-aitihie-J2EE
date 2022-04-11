@@ -18,5 +18,3 @@ public class PatientRestController {
         return patientRepository.findAll();
     }
 }
-
-

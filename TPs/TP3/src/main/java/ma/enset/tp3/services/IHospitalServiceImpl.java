@@ -21,8 +21,7 @@ public class IHospitalServiceImpl implements IHospitalService {
     private RendezVousRepository rendezVousRepository;
     private ConsultationRepository consultationRepository;
 
-    public IHospitalServiceImpl(MedecinRepository medecinRepository, PatientRepository patientRepository,
-                                RendezVousRepository rendezVousRepository, ConsultationRepository consultationRepository) {
+    public IHospitalServiceImpl(MedecinRepository medecinRepository, PatientRepository patientRepository, RendezVousRepository rendezVousRepository, ConsultationRepository consultationRepository) {
         this.medecinRepository = medecinRepository;
         this.patientRepository = patientRepository;
         this.rendezVousRepository = rendezVousRepository;
@@ -50,5 +49,3 @@ public class IHospitalServiceImpl implements IHospitalService {
         return consultationRepository.save(consultation);
     }
 }
-
-

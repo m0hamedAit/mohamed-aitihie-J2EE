@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -38,40 +40,6 @@ public class PatientController {
     @GetMapping("/")
     public String home(){
         return "redirect:/index";
-    }
-
-    @GetMapping("/patients/new")
-    public String patientForm(Model model){
-        Patient patient = new Patient();
-        model.addAttribute("patient", patient);
-        return "patient_form";
-    }
-
-    @PostMapping("/patients/save")
-    public String savePatient(@ModelAttribute("patient") Patient patient){
-        patientRepository.save(patient);
-        return "redirect:/patients";
-    }
-
-    @GetMapping("/patients/edit/{id}")
-    public String updatePatientForm(@PathVariable(value="id") Long id,
-                                Model model){
-        model.addAttribute("patient", patientRepository.getById(id));
-        return "update_patient";
-    }
-
-    @PostMapping("/patients/{id}")
-    public String updatePatient(Long id,
-                                @ModelAttribute("patient") Patient patient,
-                                Model model){
-        Patient oldPatient = patientRepository.getById(id);
-        oldPatient.setName(patient.getName());
-        oldPatient.setBirthDate(patient.getBirthDate());
-        oldPatient.setScore(patient.getScore());
-
-        patientRepository.save(oldPatient);
-
-        return "redirect:/patients";
     }
 
     @GetMapping("/patients")

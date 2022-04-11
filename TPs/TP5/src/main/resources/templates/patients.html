@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <head>
     <meta charset="UTF-8">
     <title>Patients</title>
@@ -16,13 +15,8 @@
                     <input type="text" name="keyword" th:value="${keyword}">
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
-                <div claass="row">
-                    <div class="col-lg-3">
-                        <a th:href="@{/patients/new}" class="btn btn-primary btn-sm mb-3"><i class="fa fa-plus"/></a>
-                    </div>
-                </div>
                 <table class="table">
-                    <thead class="table-dark">
+                    <thead>
                     <tr>
                         <th>ID</th><th>Nom</th><th>Date</th><th>Sick</th><th>Score</th>
                     </tr>
@@ -35,10 +29,7 @@
                         <td th:text="${p.sick}"></td>
                         <td th:text="${p.score}"></td>
                         <td>
-                            <a th:href="@{patients/edit/{id}(id=${p.id})}" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
-                        </td>
-                        <td>
-                            <a onclick="return confirm('Do you really want to delete this patient ?')" class="btn btn-danger fa-solid fa-trash" th:href="@{delete(id=${p.id}, keyword=${keyword},page=${currentPage})}"></a>
+                            <a onclick="return confirm('Do you really want to delete this patient ?')" class="btn btn-danger" th:href="@{delete(id=${p.id}, keyword=${keyword},page=${currentPage})}">Delete</a>
                         </td>
                     </tr>
                     </tbody>

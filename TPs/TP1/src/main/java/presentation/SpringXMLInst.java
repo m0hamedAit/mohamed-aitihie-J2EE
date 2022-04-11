@@ -1,6 +1,7 @@
 package presentation;
 
 import metier.IMetier;
+import metier.MetierImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class SpringXMLInst {
