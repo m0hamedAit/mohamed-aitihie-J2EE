@@ -1,0 +1,29 @@
+package com.example.activity1.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.Email;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Pattern;
+import java.util.Date;
+
+@Data @AllArgsConstructor @NoArgsConstructor
+@Entity
+public class Student {
+    @Id
+    private Long id;
+    private String firstName;
+    private String lastName;
+    @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
+    private String email;
+    @Temporal(TemporalType.DATE)
+    private Date birthDay;
+    private boolean InRegle;
+    private enum sexe {MALE, FEMALE};
+
+}

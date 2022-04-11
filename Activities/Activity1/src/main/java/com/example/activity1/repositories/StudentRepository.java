@@ -1,0 +1,14 @@
+package com.example.activity1.repositories;
+
+import com.example.activity1.entities.Student;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+    @Query("select s from Student s where s.firstName like %:key% or s.lastName like %:key%")
+    Page<Student> findByName(@Param("key")String keyword, Pageable pageable);
+
+}
