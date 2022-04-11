@@ -5,7 +5,11 @@ import com.example.activity1.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
+@Service
 @AllArgsConstructor
 public class StudentServiceImpl implements StudentService {
     StudentRepository studentRepository;
@@ -13,5 +17,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Page<Student> findStudentByName(String name, int page, int size) {
         return studentRepository.findByName(name, PageRequest.of(page, size));
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        student.setId(UUID.randomUUID().toString());
+        studentRepository.save(student);
     }
 }
