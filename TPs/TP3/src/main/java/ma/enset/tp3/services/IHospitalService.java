@@ -11,3 +11,4 @@ public interface IHospitalService {
     RendezVous saveRendezVous(RendezVous rendezVous);
     Consultation saveConsultation(Consultation consultation);
 }
+

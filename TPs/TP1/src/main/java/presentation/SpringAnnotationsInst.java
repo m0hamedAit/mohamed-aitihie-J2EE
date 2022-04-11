@@ -1,7 +1,6 @@
 package presentation;
 
 import metier.IMetier;
-import metier.MetierImpl;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class SpringAnnotationsInst {

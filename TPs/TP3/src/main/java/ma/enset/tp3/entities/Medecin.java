@@ -22,3 +22,4 @@ public class Medecin {
     private Collection<RendezVous> rendezVous;
 
 }
+
