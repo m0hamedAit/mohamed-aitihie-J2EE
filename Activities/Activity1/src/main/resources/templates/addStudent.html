@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Add Student</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <div class="col-md-6 offset-3">
+            <form method="post" th:action="@{save(page=${page},keyword=${keyword})}">
+                <div>
+                    <label>First Name</label>
+                    <input class="form-control" type="text" name="firstname" th:value="${student.firstname}">
+                    <span class="text-danger" th:errors="${student.firstname}"></span>
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input class="form-control" type="text" name="lastname" th:value="${student.lastname}">
+                    <span class="text-danger" th:errors="${student.lastname}"></span>
+                </div>
+                <div>
+                    <label>Email</label>
+                    <input class="form-control" type="text" name="email" th:value="${student.email}">
+                    <span class="text-danger" th:errors="${student.email}"></span>
+                </div>
+                <div>
+                    <label>Birthday</label>
+                    <input class="form-control" type="date" name="birthDay" th:value="${student.birthDay}">
+                    <span class="text-danger" th:errors="${student.birthDay}"></span>
+                </div>
+                <div>
+                    <label>Sick</label>
+                    <input type="checkbox" name="inRegle" th:checked="${student.inRegle}">
+                    <span class="text-danger" th:errors="${student.inRegle}"></span>
+                </div>
+                <div>
+                    <label>Sexe</label><br>
+                    <label>Male</label>
+                    <input type="radio" name="sexe" value="MALE"><br>
+                    <label>Female</label>
+                    <input type="radio" name="sexe" value="FEMALE"><br>
+                    <span class="text-danger" th:errors="${student.sexe}"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

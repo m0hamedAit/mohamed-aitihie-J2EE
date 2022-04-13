@@ -17,13 +17,13 @@ public class Activity1Application {
         SpringApplication.run(Activity1Application.class, args);
     }
 
-    @Bean
+    //@Bean
     CommandLineRunner addUser(StudentServiceImpl studentService){
         return args -> {
-          studentService.addStudent(new Student(null,"Mohamed", "Ait", "mohamed@gmail.com", new Date(), true, Sexe.MALE));
-          studentService.addStudent(new Student(null,"Amine", "C", "amine@gmail.com", new Date(), false, Sexe.MALE));
-          studentService.addStudent(new Student(null,"Asmaa", "G", "asmaa@gmail.com", new Date(), true, Sexe.FEMALE));
-          studentService.addStudent(new Student(null,"Amina", "D", "amina@gmail.com", new Date(), true, Sexe.FEMALE));
+          studentService.saveStudent(new Student(null,"Mohamed", "Ait", "mohamed@gmail.com", new Date(), true, Sexe.MALE));
+          studentService.saveStudent(new Student(null,"Amine", "C", "amine@gmail.com", new Date(), false, Sexe.MALE));
+          studentService.saveStudent(new Student(null,"Asmaa", "G", "asmaa@gmail.com", new Date(), true, Sexe.FEMALE));
+          studentService.saveStudent(new Student(null,"Amina", "D", "amina@gmail.com", new Date(), true, Sexe.FEMALE));
         };
     }
 }

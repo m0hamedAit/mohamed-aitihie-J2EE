@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.UUID;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -20,8 +20,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void addStudent(Student student) {
-        student.setId(UUID.randomUUID().toString());
+    public void saveStudent(Student student) {
         studentRepository.save(student);
+    }
+
+    @Override
+    public Student findById(Long id) {
+        return studentRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public void deleteStudent(Long id) {
+        studentRepository.findById(id).ifPresent(student -> studentRepository.delete(student));
     }
 }
