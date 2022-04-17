@@ -2,51 +2,50 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="template">
 <head>
     <meta charset="UTF-8">
-    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Edit Student</title>
 </head>
 <body>
     <div layout:fragment="content">
         <div class="col-md-6 offset-3">
-            <form method="post" th:action="@{save(page=${page},keyword=${keyword})}">
-                <div>
+            <form class="row g-3" method="post" th:action="@{save(page=${page},keyword=${keyword})}">
+                <div class="col-6">
                     <label>ID</label>
                     <input class="form-control" type="text" name="id" th:value="${student.id}" readonly>
                 </div>
-                <div>
-                    <label>First Name</label>
+                <div class="col-6">
+                    <label class="form-label">First Name</label>
                     <input class="form-control" type="text" name="firstname" th:value="${student.firstname}">
                     <span class="text-danger" th:errors="${student.firstname}"></span>
                 </div>
-                <div>
-                    <label>Last Name</label>
+                <div class="col-6">
+                    <label class="form-label">Last Name</label>
                     <input class="form-control" type="text" name="lastname" th:value="${student.lastname}">
                     <span class="text-danger" th:errors="${student.lastname}"></span>
                 </div>
-                <div>
-                    <label>Email</label>
+                <div class="col-6">
+                    <label class="form-label">Email</label>
                     <input class="form-control" type="text" name="email" th:value="${student.email}">
                     <span class="text-danger" th:errors="${student.email}"></span>
                 </div>
-                <div>
-                    <label>Birthday</label>
+                <div class="col-6">
+                    <label class="form-label">Birthday</label>
                     <input class="form-control" type="date" name="birthDay" th:value="${student.birthDay}">
                     <span class="text-danger" th:errors="${student.birthDay}"></span>
                 </div>
-                <div>
-                    <label>Sick</label>
+                <div class="col-6">
+                    <label class="form-label">En Regle</label>
                     <input type="checkbox" name="inRegle" th:checked="${student.inRegle}">
                     <span class="text-danger" th:errors="${student.inRegle}"></span>
                 </div>
-                <div>
-                    <label>Sexe</label><br>
-                    <label>Male</label>
+                <div class="col-6">
+                    <label class="form-label menu-label">Sexe</label><br>
+                    <label>&nbsp;&nbsp;&nbsp;Male</label>
                     <input type="radio" name="sexe" value="MALE"><br>
-                    <label>Female</label>
+                    <label>&nbsp;&nbsp;&nbsp;Female</label>
                     <input type="radio" name="sexe" value="FEMALE"><br>
                     <span class="text-danger" th:errors="${student.sexe}"></span>
                 </div>

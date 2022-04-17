@@ -2,50 +2,77 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       layout:decorate="template">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/webjars/bootstrap/5.1.3/js/bootstrap.bundle.js"></script>
     <title>Home</title>
 </head>
 <body>
-<div layout:fragment="content">
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th class="col">ID</th><th class="col">First Name</th><th class="col">Last Name</th><th class="col">BirthDay</th><th class="col">Email</th><th class="col">Sexe</th><th class="col">En Regle</th ><th class="col"></th >
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="student:${students}">
-            <td class="row" th:text="${student.id}" style="display:table-cell;"></td>
-            <td th:text="${student.firstname}"></td>
-            <td th:text="${student.lastname}"></td>
-            <td th:text="${student.birthDay}"></td>
-            <td th:text="${student.email}"></td>
-            <td th:text="${student.sexe}"></td>
-            <td th:text="${student.inRegle}"></td>
-            <td>
-                <a class="btn btn-outline-secondary" role="button"
-                    th:href="@{/admin/edit(id=${student.id}, keyword=${keyword}, page=${currentPage})}">
-                    <i class="fa fa-edit" style='color: gray' ></i></a>
-                <a onclick="return confirm('Are you sure ?')" class="btn btn-outline-danger" role="button"
-                   th:href="@{/admin/delete(id=${student.id}, keyword=${keyword}, page=${currentPage})}">
-                    <i class="fa fa-trash" style='color: red'></i></a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <ul class="nav nav-pills justify-content-center">
-        <li th:each="page, status:${pages}">
-            <a th:class="${status.index==currentPage?'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
-               th:text="${status.index}"
-               th:href="@{home(page=${status.index}, keyword=${keyword})}"
-            ></a> <!--status.index-->
-        </li>
-    </ul>
-</div>
+        <div layout:fragment="content">
+
+            <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3" >
+                <div class="ms-auto">
+                    <div class="btn-group" sec:authorize="hasAuthority('ADMIN')">
+                        <a th:href="@{/admin/new(keyword=${keyword}, page=${currentPage})}" type="button" class="btn btn-outline-primary">Add Student</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card radius-10 w-100">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <h6 class="mb-0">Students</h6>
+                    </div>
+                    <div class="table-responsive mt-2">
+                        <table class="table align-middle mb-0">
+                            <thead class="table-light">
+                            <tr>
+                                <th>#ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>BirthDay</th>
+                                <th>Email</th>
+                                <th>Sexe</th>
+                                <th>En Regle</th >
+                                <th></th >
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tbody>
+                            <tr th:each="student:${students}">
+                                <td class="row" th:text="${student.id}" style="display:table-cell;"></td>
+                                <td th:text="${student.firstname}"></td>
+                                <td th:text="${student.lastname}"></td>
+                                <td th:text="${student.birthDay}"></td>
+                                <td th:text="${student.email}"></td>
+                                <td th:text="${student.sexe}"></td>
+                                <td th:switch="${student.inRegle}">
+                                    <p th:case="true"><span class="badge alert-primary">true</span></p>
+                                    <p th:case="false"><span class="badge alert-danger">false</span></p>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3 fs-6" sec:authorize="hasAuthority('ADMIN')">
+                                        <a th:href="@{/admin/edit(id=${student.id}, keyword=${keyword}, page=${currentPage})}" class="text-warning" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Edit info" aria-label="Edit"><ion-icon name="pencil-sharp"></ion-icon></a>
+                                        <a th:href="@{/admin/delete(id=${student.id})}" class="text-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Delete" aria-label="Delete"><ion-icon name="trash-sharp"></ion-icon></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <ul class="nav nav-pills justify-content-center">
+                            <li th:each="page, status:${pages}">
+                                <a th:class="${status.index==currentPage?'btn btn-primary ms-1':'btn btn-outline-primary ms-1'}"
+                                   th:text="${status.index}"
+                                   th:href="@{home(page=${status.index}, keyword=${keyword})}"
+                                ></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </body>
 </html>

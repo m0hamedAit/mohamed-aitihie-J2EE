@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+        <div layout:fragment="content">
+            <div class="card radius-10">
+                <div class="row g-0">
+                    <div class="col-12 col-xl-5">
+                        <div class="card-body">
+                            <h1 class="display-1"><span class="text-danger">403</span></h1>
+                            <h2 class="font-weight-bold display-4"> Access forbidden ! </h2>
+                            <p>You Cannot access this page</p>
+                            <div class="mt-5"> <a th:href="@{/home}" class="btn btn-primary btn-lg px-md-5 radius-30">Go Home</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7">
+                        <img th:src="@{/assets/images/error/403.png}" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</body>
+</html>

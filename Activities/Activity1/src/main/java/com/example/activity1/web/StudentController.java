@@ -4,6 +4,7 @@ import com.example.activity1.entities.Student;
 import com.example.activity1.services.StudentServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,10 +37,11 @@ public class StudentController {
     }
 
     //delete
-    @DeleteMapping(value="/admin/delete/{id}")
-    public String deleteById(@PathVariable("id") long id, String keyword, int page) {
+    @DeleteMapping(path = "/admin/delete/{id}")
+    public String deleteById(@PathVariable("id") long id) {
+        System.out.println("DELLELELELELELELELELELELLLLLLLLLLLLLLLLLLLLLLLLLL "+id);
         studentService.deleteStudent(id);
-        return "redirect:/home?Page="+page+"&keyword="+keyword;
+        return "redirect:/home";
     }
 
     //add
@@ -67,10 +69,8 @@ public class StudentController {
     @PostMapping(path="/admin/save")
     public String save(Model model, @Valid Student student, BindingResult bindingResult, @RequestParam(name = "keyword",defaultValue = "")String keyword,
                        @RequestParam(name = "page",defaultValue = "0") int page){
-        //System.out.println(student.getFirstname());
         if(bindingResult.hasErrors()) return "addStudent";
         studentService.saveStudent(student);
-        //System.out.println(student.getLastname());
         return "redirect:/home?page="+page+"&keyword="+keyword;
     }
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="semi-dark"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link th:href="@{/assets/css/pace.min.css}" rel="stylesheet" />
+        <script th:src="@{/assets/js/pace.min.js}"></script>
+
+        <link th:href="@{/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css}" rel="stylesheet" />
+
+
+        <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet">
+        <link th:href="@{/assets/css/bootstrap-extended.css}" rel="stylesheet">
+        <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+        <link th:href="@{/assets/css/icons.css}" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+        <title>Login</title>
+    </head>
+
+<body>
+
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-5 col-md-7 mx-auto mt-5">
+                <div class="card radius-10">
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h4>LogIn</h4>
+                            <p>LogIn to your account</p>
+                        </div>
+                        <form class="form-body row g-3" th:action="@{/login}" method="post">
+                            <div class="text-white bg-danger" style="text-align:center;" th:if="${param.error}">Invalid username and password</div>
+                            <div class="col-12">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control"  name='username'>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name='password' >
+                            </div>
+
+                            <div class="col-12 col-lg-12">
+                                <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary">LogIn</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+
+</html>
