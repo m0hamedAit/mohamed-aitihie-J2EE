@@ -11,7 +11,7 @@
 <body>
     <div layout:fragment="content">
         <div class="col-md-6 offset-3">
-            <form class="row g-3" method="post" th:action="@{save(page=${page},keyword=${keyword})}">
+            <form class="row g-3" method="post" th:action="@{save(page=${page},keyword=${keyword})}" th:object="${student}">
                 <div class="col-6">
                     <label class="form-label">First Name</label>
                     <input class="form-control" type="text" name="firstname" th:value="${student.firstname}">

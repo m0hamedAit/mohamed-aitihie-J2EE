@@ -99,18 +99,16 @@
                     <li class="nav-item dropdown dropdown-user-setting">
                         <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javascript:;" data-bs-toggle="dropdown" sec:authorize="isAuthenticated()">
                             <div class="user-setting">
-                                <!--<img sec:authorize="hasAuthority('ADMIN')" class="user-img" alt="" th:src="@{/assets/images/avatars/admin.png}">-->
-                                <!--<img sec:authorize="hasAuthority('User')  && !hasAuthority('ADMIN')" class="user-img" alt="" th:src="@{/assets/images/avatars/user.png}">-->
-                                <img class="user-img" alt="" th:src="@{/assets/images/avatars/picture.png}">
+                                <img sec:authorize="hasAuthority('ADMIN')" class="user-img" alt="" th:src="@{/assets/images/avatars/admin.png}">
+                                <img sec:authorize="hasAuthority('User')  && !hasAuthority('ADMIN')" class="user-img" alt="" th:src="@{/assets/images/avatars/user.png}">
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" sec:authorize="isAuthenticated()">
                             <li>
                                 <a class="dropdown-item" href="javascript:;" >
                                     <div class="d-flex flex-row align-items-center gap-2" >
-                                        <!--<img sec:authorize="hasAuthority('ADMIN')" th:src="@{/assets/images/avatars/admin.png}" alt="" class="rounded-circle" width="54" height="54">-->
-                                        <!--<img sec:authorize="hasAuthority('USER') && !hasAuthority('ADMIN')" th:src="@{/assets/images/avatars/user.png}" alt="" class="rounded-circle" width="54" height="54">-->
-                                        <img class="user-img" alt="" th:src="@{/assets/images/avatars/picture.png}">
+                                        <img sec:authorize="hasAuthority('ADMIN')" th:src="@{/assets/images/avatars/admin.png}" alt="" class="rounded-circle" width="54" height="54">
+                                        <img sec:authorize="hasAuthority('USER') && !hasAuthority('ADMIN')" th:src="@{/assets/images/avatars/user.png}" alt="" class="rounded-circle" width="54" height="54">
                                         <div class="">
                                             <h6 class="mb-0 dropdown-user-name" sec:authentication="name"></h6>
                                             <small class="mb-0 dropdown-user-designation text-secondary" sec:authentication="principal.authorities"></small>
@@ -162,6 +160,9 @@
 
 </div>
 
+<section layout:fragment="script">
+
+</section>
 
 <script th:src="@{/assets/js/jquery.min.js}"></script>
 <script th:src="@{/assets/plugins/simplebar/js/simplebar.min.js}"></script>

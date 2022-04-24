@@ -5,6 +5,7 @@ import com.example.activity1.entities.Student;
 import com.example.activity1.security.service.SecurityService;
 import com.example.activity1.services.StudentService;
 import com.example.activity1.services.StudentServiceImpl;
+import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,12 +26,14 @@ public class Activity1Application {
     }
 
     //@Bean
-    CommandLineRunner addUser(StudentServiceImpl studentService){
+    CommandLineRunner addStudents(StudentServiceImpl studentService) {
+        Faker faker = new Faker();
         return args -> {
-          studentService.saveStudent(new Student(null,"Mohamed", "Ait", "mohamed@gmail.com", new Date(), true, Sexe.MALE));
-          studentService.saveStudent(new Student(null,"Amine", "C", "amine@gmail.com", new Date(), false, Sexe.MALE));
-          studentService.saveStudent(new Student(null,"Asmaa", "G", "asmaa@gmail.com", new Date(), true, Sexe.FEMALE));
-          studentService.saveStudent(new Student(null,"Amina", "D", "amina@gmail.com", new Date(), true, Sexe.FEMALE));
+            for (int i = 0; i < 50; i++) {
+                studentService.saveStudent(
+                        new Student(null, faker.name().firstName(), faker.name().firstName(), faker.internet().emailAddress(), faker.date().birthday(19, 21), faker.bool().bool(), faker.options().option(Sexe.class))
+                );
+            }
         };
     }
 

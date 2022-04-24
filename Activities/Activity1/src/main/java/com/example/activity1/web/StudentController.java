@@ -4,11 +4,13 @@ import com.example.activity1.entities.Student;
 import com.example.activity1.services.StudentServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -27,7 +29,7 @@ public class StudentController {
         model.addAttribute("students", studentsByPage.getContent());
         model.addAttribute("pages", new int[studentsByPage.getTotalPages()]);
         model.addAttribute("currentPage", page);
-
+        
         return "home";
     }
 
@@ -37,10 +39,13 @@ public class StudentController {
     }
 
     //delete
-    @DeleteMapping(path = "/admin/delete/{id}")
-    public String deleteById(@PathVariable("id") long id) {
-        System.out.println("DELLELELELELELELELELELELLLLLLLLLLLLLLLLLLLLLLLLLL "+id);
-        studentService.deleteStudent(id);
+    @DeleteMapping("/admin/delete")
+    public String delete(@RequestParam(name = "id") long id) {
+        Student student = studentService.findById(id);
+        if(student!=null)
+            studentService.deleteStudent(id);
+        else
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student deosn't exist");
         return "redirect:/home";
     }
 
@@ -57,7 +62,7 @@ public class StudentController {
     @GetMapping("/admin/edit")
     public String editForm(Model model, long id, String keyword, int page){
         Student student = studentService.findById(id);
-        if(student==null) throw new RuntimeException("Student doesn't exist !!");
+        if(student==null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student deosn't exist");
         System.out.println(student.getLastname());
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
