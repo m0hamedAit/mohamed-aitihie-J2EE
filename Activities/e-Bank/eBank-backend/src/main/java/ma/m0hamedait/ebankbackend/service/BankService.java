@@ -9,17 +9,19 @@ import java.util.List;
 
 public interface BankService {
     // customer
-    void addCustomer(Customer customer);
+    void saveCustomer(Customer customer);
     List<Customer> findAllCustomers();
     Customer findCustomerById(Long id);
     Customer findCustomerByName(String name);
     Customer findCustomerByEmail(String email);
     Collection<Account> findCustomerAccounts(Long customerId);
+    void deleteCustomer(Long customerId);
     // account
-    void addAccount(Account account);
+    void saveAccount(Account account);
     List<Account> findAllAccounts();
     Account findAccountById(String accountId);
     Collection<Operation> findAccountOperations(String accountId);
+    void deleteAccount(String accountId);
     // operations
     void debit(Operation operation);
     boolean credit(Operation operation);

@@ -28,7 +28,7 @@ public class BankServiceImpl implements BankService {
 
 
     @Override
-    public void addAccount(Account account) {
+    public void saveAccount(Account account) {
         account.setId(UUID.randomUUID().toString());
         accountRepository.save(account);
     }
@@ -52,7 +52,12 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public void addCustomer(Customer customer) {
+    public void deleteAccount(String accountId) {
+        accountRepository.deleteById(accountId);
+    }
+
+    @Override
+    public void saveCustomer(Customer customer) {
         customerRepository.save(customer);
     }
 
@@ -82,6 +87,17 @@ public class BankServiceImpl implements BankService {
         if(customer != null)
             return customer.getAccounts();
         return null;
+    }
+
+    @Override
+    public void deleteCustomer(Long customerId) {
+        Customer customer = customerRepository.findById(customerId).orElse(null);
+        if(customer != null){
+            customer.getAccounts().forEach(account -> {
+                deleteAccount(account.getId());
+            });
+            customerRepository.deleteById(customerId);
+        }
     }
 
     @Override
@@ -124,8 +140,7 @@ public class BankServiceImpl implements BankService {
     }
 
     @Override
-    public Account consultAccount(String accountId) {
-
-        return null;
+    public Account consultAccount(String accountId) {   // ??
+        return findAccountById(accountId);
     }
 }
