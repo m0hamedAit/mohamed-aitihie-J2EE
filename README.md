@@ -12,6 +12,6 @@
 
 <h2 align="center">Projets</h2>
 
-📁 [<b>Mini Projet 1 : Framework d'Injection des dépendances</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Projets/mProjet1_framework)
-📁 [<b>Web Application : Students Management</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Activities/Activity1)
-📁 [<b>Web Application : E-Bank</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Activities/e-Bank)
+📁 [<b>Mini Projet 1 : Framework d'Injection des dépendances</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Projets/mProjet1_framework)<br/>
+📁 [<b>Web Application : Students Management</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Activities/Activity1)<br/>
+📁 [<b>Web Application : E-Bank</b>](https://github.com/m0hamedAit/mohamed-aitihie-JEE/tree/main/Activities/e-Bank)<br/>
