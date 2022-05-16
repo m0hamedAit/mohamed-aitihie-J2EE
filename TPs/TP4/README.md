@@ -14,7 +14,7 @@ Reprendre les exemples de mapping objet relationnel avec JPA, Hibernate et Sprin
 </details>
 
 <details><summary> <h2>Conception</h2> </summary>
-  
+  <p align="center"><img src="assets/conception.PNG"></p>
 </details>
 
 <details><summary> <h2>Captures d'écran</h2> </summary>
