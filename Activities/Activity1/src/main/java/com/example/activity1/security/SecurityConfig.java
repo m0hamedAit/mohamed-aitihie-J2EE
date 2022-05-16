@@ -41,9 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
         auth.userDetailsService(userDetailsService);
-
     }
 
     @Override
@@ -51,9 +49,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //Web resources
         web.ignoring().antMatchers("/assets/**");
     }
-
-
 }
-
-
-// pour le hashage des mdp, c'est mieux d'utiliser Bcrypt et pas md5(depassé)

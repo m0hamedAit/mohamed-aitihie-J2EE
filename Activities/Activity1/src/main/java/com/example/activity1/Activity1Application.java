@@ -3,7 +3,6 @@ package com.example.activity1;
 import com.example.activity1.entities.Sexe;
 import com.example.activity1.entities.Student;
 import com.example.activity1.security.service.SecurityService;
-import com.example.activity1.services.StudentService;
 import com.example.activity1.services.StudentServiceImpl;
 import com.github.javafaker.Faker;
 import org.springframework.boot.CommandLineRunner;
@@ -17,8 +16,6 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import java.util.Date;
-
 @SpringBootApplication
 public class Activity1Application {
     public static void main(String[] args) {
@@ -31,7 +28,7 @@ public class Activity1Application {
         return args -> {
             for (int i = 0; i < 50; i++) {
                 studentService.saveStudent(
-                        new Student(null, faker.name().firstName(), faker.name().firstName(), faker.internet().emailAddress(), faker.date().birthday(19, 21), faker.bool().bool(), faker.options().option(Sexe.class))
+                        new Student(null, faker.name().firstName(), faker.name().lastName(), faker.internet().emailAddress(), faker.date().birthday(19, 21), faker.bool().bool(), faker.options().option(Sexe.class))
                 );
             }
         };

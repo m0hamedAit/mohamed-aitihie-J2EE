@@ -29,7 +29,6 @@ public class StudentController {
         model.addAttribute("students", studentsByPage.getContent());
         model.addAttribute("pages", new int[studentsByPage.getTotalPages()]);
         model.addAttribute("currentPage", page);
-        
         return "home";
     }
 
@@ -60,10 +59,9 @@ public class StudentController {
 
     //edit
     @GetMapping("/admin/edit")
-    public String editForm(Model model, long id, String keyword, int page){
+    public String editForm(Model model, Long id, String keyword, int page){
         Student student = studentService.findById(id);
         if(student==null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student deosn't exist");
-        System.out.println(student.getLastname());
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
         model.addAttribute("student",student);
