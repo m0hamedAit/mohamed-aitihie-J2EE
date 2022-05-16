@@ -58,8 +58,8 @@ Créer une application Web JEE basée sur Spring MVC, Thylemeaf et Spring Data J
     <ul><h6>Security service</h6></ul>
     <img src="assets/SecurityService.PNG"/>
     <ul><h6>Security service Implementation</h6></ul>
-    <img src="assets/securityServiceImpl1.PNG"/>
-    <img src="assets/securityServiceImpl2.PNG"/>
+    <img src="assets/SecurityServiceImpl1.PNG"/>
+    <img src="assets/SecurityServiceImpl2.PNG"/>
     <ul><h6>UserDetails service Implementation</h6></ul>
     <img src="assets/userDetailsServiceImpl.PNG"/>
   </ul>
