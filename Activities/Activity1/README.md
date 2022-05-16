@@ -3,23 +3,27 @@
 
 <details><summary> <h2>Enoncé</h2> </summary>
 Créer une application Web basée sur Spring MVC, Spring Data JPA et Spring Security qui permet de gérer des étudiants.
-Chaque étudiant est défini par:
- - Son id
- - Son nom
- - Son prénom
- - Son email
- - Sa date naissance
- - Son genre : MASCULIN ou FEMININ
- - Un attribut qui indique si il est en règle ou non
+Chaque étudiant est défini par:<br>
+ <ul>
+  <li>Son id</li>
+  <li>Son nom</li>
+ <li>Son prénom</li>
+ <li>Son email</li>
+ <li>Sa date naissance</li>
+ <li>Son genre : MASCULIN ou FEMININ</li>
+ <li>Un attribut qui indique si il est en règle ou non</li>
+ </ul>
 L'application doit offrir les fonctionnalités suivantes :
-  - Chercher des étudiants par nom
-  - Faire la pagination
-  - Supprimer des étudiants en utilisant la méthode (DELETE au lieu de GET)
-  - Saisir et Ajouter des étudiants avec validation des formulaires
-  - Editer et mettre à jour des étudiants
-  - Créer une page template 
-  - Sécuriser l'accès à l'application avec un système d'authentification basé sur Spring security en utilisant la stratégie UseDetails Service
- - Ajouter d'autres fonctionnalités supplémentaires
+ <ol>
+   <li>Chercher des étudiants par nom</li>
+   <li>Faire la pagination</li>
+   <li>Supprimer des étudiants en utilisant la méthode (DELETE au lieu de GET)</li>
+   <li>Saisir et Ajouter des étudiants avec validation des formulaires</li>
+   <li>Editer et mettre à jour des étudiants</li>
+   <li>Créer une page template </li>
+   <li>Sécuriser l'accès à l'application avec un système d'authentification basé sur Spring security en utilisant la stratégie UseDetails Service</li>
+  <li>Ajouter d'autres fonctionnalités supplémentaires</li>
+  </ol>
 </details>
 
 <details><summary> <h2>Conception</h2> </summary>
@@ -104,8 +108,8 @@ L'application doit offrir les fonctionnalités suivantes :
     <ul><h6>Home</h6></ul>
     <img src="assets/homeAsAdmin.PNG"/>
     <ul><h6>Add Student</h6></ul>
-      <img src="assets/addstudent1.PNG"/>
-      <img src="assets/addstudent2.PNG"/>
+      <img src="assets/addStudent1.PNG"/>
+      <img src="assets/addStudent2.PNG"/>
     <ul><h6>Update Student</h6></ul>
       <img src="assets/updateStudent1.PNG"/>
       <img src="assets/updateStudent2.PNG"/>
