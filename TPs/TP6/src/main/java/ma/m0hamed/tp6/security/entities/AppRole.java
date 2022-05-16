@@ -15,3 +15,4 @@ public class AppRole {
     private String roleName;
     private String description;
 }
+

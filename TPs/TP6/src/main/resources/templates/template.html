@@ -13,14 +13,14 @@
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a class="navbar-brand">Hospital</a>
+                <a class="navbar-brand"><i class="fa fa-h-square" aria-hidden="true"></i></a>
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                     <div class="navbar-nav">
                         <a th:href="@{/home}" class="nav-item nav-link active">Home</a>
-                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/new}" class="nav-item nav-link">Add Patient</a>
+                        <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/admin/new(keyword=${keyword}, page=${currentPage})}" class="nav-item nav-link">Add Patient</a>
                     </div>
                     <form class="d-flex" method="get" th:action="@{home}">
                         <div class="input-group">

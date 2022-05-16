@@ -11,3 +11,4 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("select p from Patient p where p.firstName like %:key% or p.lastName like %:key%")
     Page<Patient> findByNameContains(@Param("key")String keyword, Pageable pageable);
 }
+

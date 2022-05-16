@@ -16,9 +16,9 @@ import java.util.Date;
 public class Patient {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min=4, max=25)
+    @Size(min=2, max=25)
     private String firstName;
-    @Size(min=4, max=25)
+    @Size(min=2, max=25)
     private String lastName;
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String email;

@@ -17,6 +17,7 @@
         <datasource-mapping>
           <factory-entry name="entityManagerFactory" />
           <factory-entry name="spring_App" />
+          <factory-entry name="tp6" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -142,6 +143,11 @@
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-core:5.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-crypto:5.6.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.security:spring-security-web:5.6.2" level="project" />
+    <orderEntry type="library" name="Maven: com.github.javafaker:javafaker:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.12.0" level="project" />
+    <orderEntry type="library" name="Maven: org.yaml:snakeyaml:android:1.23" level="project" />
+    <orderEntry type="library" name="Maven: com.github.mifmif:generex:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: dk.brics.automaton:automaton:1.11-8" level="project" />
     <orderEntry type="library" name="Maven: org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.0.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.36" level="project" />
   </component>

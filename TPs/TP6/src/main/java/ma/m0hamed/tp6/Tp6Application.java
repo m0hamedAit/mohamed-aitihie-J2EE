@@ -1,5 +1,6 @@
 package ma.m0hamed.tp6;
 
+import com.github.javafaker.Faker;
 import ma.m0hamed.tp6.entities.Patient;
 import ma.m0hamed.tp6.repositories.PatientRepository;
 import ma.m0hamed.tp6.security.service.SecurityService;
@@ -21,26 +22,25 @@ public class Tp6Application {
 
     //@Bean
     CommandLineRunner commandLineRunner(PatientRepository patientRepository) {
+        Faker faker = new Faker();
         return args -> {
-            patientRepository.save(new Patient(null, "hassan", "Ajkh", "hassan@email.com" , new Date(), false));
-            patientRepository.save(new Patient(null, "Mohamed", "Bqsd", "mohamed@email.com" , new Date(), true));
-            patientRepository.save(new Patient(null, "Yassmin", "Csdfs", "yassmine@email.com" , new Date(), false));
-            patientRepository.save(new Patient(null, "Hanae", "Dqsdf", "hanae@email.com" ,  new Date(), true));
-
-            patientRepository.findAll().forEach(p->{
-                System.out.println(p.getFirstName());
-            });
+            for (int i = 0; i < 50; i++) {
+                patientRepository.save(
+                        new Patient(null, faker.name().firstName(),
+                                faker.name().lastName(), faker.internet().emailAddress(),
+                                faker.date().birthday(1, 60), faker.bool().bool())
+                );
+            }
         };
     }
 
     //@Bean
     CommandLineRunner saveUsers(SecurityService securityService) {
         return args -> {
-            securityService.saveNewUser("mohamed", "1234", "1234");
-            securityService.saveNewUser("Anas", "12345", "12345");
-
-            securityService.saveNewRole("USER", "");
-            securityService.saveNewRole("ADMIN", "");
+            securityService.saveUser("mohamed", "1234", "1234");
+            securityService.saveUser("Anas", "12345", "12345");
+            securityService.saveRole("USER", "");
+            securityService.saveRole("ADMIN", "");
 
             securityService.addRoleToUser("mohamed", "USER");
             securityService.addRoleToUser("mohamed", "ADMIN");

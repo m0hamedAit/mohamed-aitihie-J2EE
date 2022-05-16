@@ -7,16 +7,15 @@
     <meta charset="UTF-8">
     <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Add New Patient</title>
+    <title>Update Patient</title>
 </head>
 <body>
     <div layout:fragment="content">
         <div class="col-md-6 offset-3">
-        <form method="put" th:action="@{save(page=${page},keyword=${keyword})}">
+        <form method="post" th:action="@{save(page=${page},keyword=${keyword})}">
             <div>
                 <label>ID : </label>
-                <label th:text="${patient.id}"></label>
-                <!--<input class="form-control" type="hidden" name="id" th:value="${patient.id}">-->
+                <input class="form-control" type="text" name="id" th:value="${patient.id}" readonly>
             </div>
                 <div>
                     <label>First Name</label>
@@ -40,10 +39,10 @@
                 </div>
                 <div>
                     <label>Sick</label>
-                    <input type="checkbox" name="sick" th:value="${patient.sick}">
+                    <input type="checkbox" name="sick" th:checked="${patient.sick}">
                     <span class="text-danger" th:errors="${patient.sick}"></span>
                 </div>
-                <button type="submit" class="btn btn-primary">Modify</button>
+                <button type="submit" class="btn btn-primary">Update</button>
 
         </form>
         </div>

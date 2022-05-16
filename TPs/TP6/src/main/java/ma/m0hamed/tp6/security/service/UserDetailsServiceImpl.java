@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    private SecurityService securityService;
+    private final SecurityService securityService;
 
     public UserDetailsServiceImpl(SecurityService securityService) {
         this.securityService = securityService;
@@ -35,3 +35,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return user;
     }
 }
+
