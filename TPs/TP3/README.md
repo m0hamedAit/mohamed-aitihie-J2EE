@@ -47,8 +47,8 @@ Reprendre les exemples de mapping objet relationnel avec JPA, Hibernate et Sprin
   <ul><h6>Hopital service Interface</h6></ul>
   <img src="assets/IService.PNG"/>
   <ul><h6>Hopital service Implementation</h6></ul>
-  <img src="assets/serviceImpl1.PNG"/>
-  <img src="assets/serviceImpl2.PNG"/>
+  <img src="assets/serviceIMPL1.PNG"/>
+  <img src="assets/serviceIMPL2.PNG"/>
 </ul>
 
 <ul><h4>Controllers</h4>
