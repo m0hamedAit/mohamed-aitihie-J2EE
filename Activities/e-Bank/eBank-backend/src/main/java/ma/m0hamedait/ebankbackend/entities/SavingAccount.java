@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-//@DiscriminatorValue("SA") // utiliser seulement pour heritage single_table // affecter au "SA" au column "type" si account est un savingAccount
+@DiscriminatorValue("SA") // utiliser seulement pour heritage single_table // affecter au "SA" au column "type" si account est un savingAccount
 public class SavingAccount extends Account{
     private double interestRate;
 }
