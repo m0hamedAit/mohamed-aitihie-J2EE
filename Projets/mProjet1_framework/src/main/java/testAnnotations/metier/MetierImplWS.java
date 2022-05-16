@@ -1,4 +1,4 @@
-package testAnnotations.applications.metier;
+package testAnnotations.metier;
 
 import testXML.dao.IDao;
 

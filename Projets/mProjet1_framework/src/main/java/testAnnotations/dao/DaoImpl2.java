@@ -1,4 +1,4 @@
-package testAnnotations.applications.dao;
+package testAnnotations.dao;
 
 
 public class DaoImpl2 implements IDao {

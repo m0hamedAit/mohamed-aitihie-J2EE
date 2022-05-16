@@ -1,7 +1,7 @@
-package testAnnotations.applications.metier;
+package testAnnotations.metier;
 
 import annotations.Autowired;
-import testXML.dao.IDao;
+import testAnnotations.dao.IDao;
 
 public class MetierImpl implements IMetier {
     @Autowired
