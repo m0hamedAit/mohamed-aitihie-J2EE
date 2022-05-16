@@ -1,4 +1,4 @@
-# TP6 : Activité Pratique Spring MVC Thymeleaf
+# Web Application : Students Management
 
 
 <details><summary> <h2>Enoncé</h2> </summary>
