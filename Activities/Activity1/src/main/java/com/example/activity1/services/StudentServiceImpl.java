@@ -34,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
          Student student = studentRepository.findById(id).orElse(null);
          if(student!=null)
              studentRepository.delete(student);
-
-
     }
 }
+

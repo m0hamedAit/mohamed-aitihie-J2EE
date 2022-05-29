@@ -61,7 +61,8 @@ public class StudentController {
     @GetMapping("/admin/edit")
     public String editForm(Model model, Long id, String keyword, int page){
         Student student = studentService.findById(id);
-        if(student==null) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student deosn't exist");
+        if(student==null)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Student deosn't exist");
         model.addAttribute("page", page);
         model.addAttribute("keyword", keyword);
         model.addAttribute("student",student);
@@ -70,11 +71,13 @@ public class StudentController {
 
     //save
     @PostMapping(path="/admin/save")
-    public String save(Model model, @Valid Student student, BindingResult bindingResult, @RequestParam(name = "keyword",defaultValue = "")String keyword,
+    public String save(Model model, @Valid Student student,
+                       BindingResult bindingResult,
+                       @RequestParam(name = "keyword",defaultValue = "")String keyword,
                        @RequestParam(name = "page",defaultValue = "0") int page){
         if(bindingResult.hasErrors()) return "addStudent";
         studentService.saveStudent(student);
         return "redirect:/home?page="+page+"&keyword="+keyword;
     }
-
 }
+

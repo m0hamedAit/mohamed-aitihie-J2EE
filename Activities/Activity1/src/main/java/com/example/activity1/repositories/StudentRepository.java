@@ -10,5 +10,6 @@ import org.springframework.data.repository.query.Param;
 public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("select s from Student s where s.firstname like %:key% or s.lastname like %:key%")
     Page<Student> findByName(@Param("key")String keyword, Pageable pageable);
-    //Page<Student> findStudentsByFirstnameContainsOrLastnameContains(String keyword);
 }
+
+

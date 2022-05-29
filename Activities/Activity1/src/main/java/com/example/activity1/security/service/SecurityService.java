@@ -9,3 +9,4 @@ public interface SecurityService {
     void removeRoleFromUser(String username, String roleName);
     AppUser loadUserByUserName(String username);
 }
+
