@@ -178,17 +178,17 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public void transfert(String senderAccountId,
-                          String beneficiaryAccountId, double amount)
+                          String recipientAccountId, double amount)
             throws AccountNotFoundException, BalanceNotSufficientException {  // transfer = debit to beneficiary + credit from sender ?? how to add sender and receiver in each operation
-        debit(beneficiaryAccountId,"Transfer from"+senderAccountId, amount);
-        credit(senderAccountId,"Transfer to"+beneficiaryAccountId, amount);
+        debit(recipientAccountId,"Transfer from"+senderAccountId, amount);
+        credit(senderAccountId,"Transfer to"+recipientAccountId, amount);
     }
 
     @Override
     public AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws AccountNotFoundException {
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(()-> new AccountNotFoundException("Account not found"));
-        Page<Operation> accountOperations = operationRepository.findByAccountId(accountId, PageRequest.of(page, size));
+        Page<Operation> accountOperations = operationRepository.findByAccountIdOrderByOperationDateDesc(accountId, PageRequest.of(page, size));
         AccountHistoryDTO accountHistoryDTO = new AccountHistoryDTO();
         List<OperationDTO> operationDTOS = accountOperations.getContent().stream()
                 .map(op->mapper.fromOperation(op)).collect(Collectors.toList());
@@ -198,7 +198,28 @@ public class BankServiceImpl implements BankService {
         accountHistoryDTO.setCurrentPage(page);
         accountHistoryDTO.setPageSize(size);
         accountHistoryDTO.setTotalPages(accountOperations.getTotalPages());
-        return null;
+        return accountHistoryDTO;
     }
 
+    @Override
+    public void deleteOperation(Long idOperation) {
+        Operation operation = operationRepository.findById(idOperation)
+                .orElseThrow(()->new RuntimeException("Operation not found !"));
+        operationRepository.delete(operation);
+    }
+
+    @Override
+    public List<CustomerDTO> searchCustomers(String keyword) {
+        List<Customer> customers = customerRepository.searchCustomers(keyword);
+        return customers.stream().map(customer -> mapper.fromCustomer(customer)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateCustomer(Long id, CustomerDTO customerDTO) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Customer not found !"));
+        customer.setName(customerDTO.getName());
+        customer.setEmail(customerDTO.getEmail());
+        customerRepository.save(customer);
+    }
 }

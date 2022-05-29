@@ -29,4 +29,9 @@ public interface BankService {
     void transfert(String senderAccountId, String beneficiaryAccountId, double amount) throws AccountNotFoundException, BalanceNotSufficientException;
 
     AccountHistoryDTO getAccountHistory(String accountId, int page, int size) throws AccountNotFoundException;
+    void deleteOperation(Long idOperation);
+
+    List<CustomerDTO> searchCustomers(String keyword);
+
+    void updateCustomer(Long id, CustomerDTO customerDTO);
 }

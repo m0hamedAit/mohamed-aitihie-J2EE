@@ -4,8 +4,7 @@ package ma.m0hamedait.ebankbackend;
 import ma.m0hamedait.ebankbackend.dtos.CurrentAccountDTO;
 import ma.m0hamedait.ebankbackend.dtos.CustomerDTO;
 import ma.m0hamedait.ebankbackend.dtos.SavingAccountDTO;
-import ma.m0hamedait.ebankbackend.entities.Account;
-import ma.m0hamedait.ebankbackend.entities.Customer;
+
 import ma.m0hamedait.ebankbackend.exceptions.AccountNotFoundException;
 import ma.m0hamedait.ebankbackend.exceptions.BalanceNotSufficientException;
 import ma.m0hamedait.ebankbackend.exceptions.CustomerNotFoundException;
@@ -14,6 +13,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.stream.Stream;
 
@@ -25,12 +26,11 @@ public class EBankBackendApplication {
     }
 
 
-    //@Bean
+    @Bean
     CommandLineRunner start(BankService bankService) {
         return args -> {
             Stream.of("Mohamed", "Anas", "Amine").forEach(name -> {
                 System.out.println(name);
-
                 CustomerDTO customer = new CustomerDTO();
                 customer.setName(name);
                 customer.setEmail(name + "@gmail.com");
@@ -63,6 +63,11 @@ public class EBankBackendApplication {
                 }
             });
         };
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

@@ -13,5 +13,5 @@ public class OperationDTO {
     private String description;
     private double amount;
     private OperationType type;
-
+    private AccountDTO accountDTO;  /////////// a revoir
 }
