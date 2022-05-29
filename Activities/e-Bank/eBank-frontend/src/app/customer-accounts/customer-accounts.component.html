@@ -1,0 +1,19 @@
+<div class="container">
+  <form [formGroup]="customerFormGroup" (ngSubmit)="handleUpdateCustomer()">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>ID</label>
+        <input type="text" formControlName="customerId" class="text-dark bg-white form-control" [value]="customerId" readonly="readonly" >
+      </div>
+      <div class="form-group col-md-6">
+        <label>Name</label>
+        <input type="text" formControlName="customerName" class="text-dark form-control" [value]="customer.name">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" class="text-dark form-control"  formControlName="customerEmail" [value]="customer.email">
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+.customized-cover{
+  height: 100%;
+}
+
+.bg {
+  /* The image used */
+  background-image: url("src/assets/img/bg.png");
+
+  /* Half height */
+  height: 50%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
