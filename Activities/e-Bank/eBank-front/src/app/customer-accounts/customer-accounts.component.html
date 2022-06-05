@@ -1,0 +1,103 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col col-md-6">
+      <div class="card">
+        <div class="card-header">Customer</div>
+        <div class="card-body">
+
+          <form [formGroup]="customerFormGroup" (ngSubmit)="handleSearchCustomer()">
+
+            <label class="">Customer ID : </label>
+            <div class="input-group">
+              <input type="text" formControlName="customerId" class="form-control">
+              <button class="btn btn-primary btn-sm"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+          <br>
+          <br>
+          <ng-template #errorTemplate>
+            <ng-container *ngIf="errorMessageCustomer"> <!--; else loading-->
+              <div class="alert alert-danger alert-with-icon alert-dismissible">
+                <span class="tim-icons icon-alert-circle-exc" data-notify="icon"></span>
+                <span>
+                  <b>
+                  Error! -
+                  </b>
+                  Customer not found !
+                </span>
+              </div>
+            </ng-container>
+
+          </ng-template>
+          <ng-container *ngIf="customerObservable | async as customer; else errorTemplate">
+            <div class="mb-2">
+              <label><strong> ID :&nbsp; </strong></label>
+              <label>{{customer.id}}</label>
+            </div>
+            <div class="mb-2">
+              <label><strong> Name : &nbsp;</strong></label>
+              <label>{{customer.name}}</label>
+            </div>
+            <div class="mb-2">
+              <label><strong> Email : &nbsp;</strong></label>
+              <label>{{customer.email}}</label>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+
+    <div class="col col-md-6">
+      <ng-template #errorATemplate>
+        <ng-container *ngIf="errorMessageAccounts"> <!--; else loading-->
+          <div class="alert alert-danger alert-with-icon alert-dismissible">
+            <span class="tim-icons icon-alert-circle-exc" data-notify="icon"></span>
+            <span>
+                  <b>
+                  Error! -
+                  </b>
+                {{errorMessageAccounts}}
+                </span>
+          </div>
+        </ng-container>
+
+      </ng-template>
+      <ng-container *ngIf="customerObservable | async as customer; else errorTemplate">
+        <ng-container *ngIf="customerAccounts | async as accounts; else errorATemplate">
+          <div *ngFor="let account of accounts">
+            <br><br>
+                <a href></a>
+                <div class="card_b">
+                  <div class="card__front card__part">
+                    <p class="card_numer">**** **** **** {{account.id | slice: account.id.length-4:account.id.length}}</p>
+                    <div class="card__space-75">
+                      <span class="card__label">Card holder</span>
+                      <p class="card__info">{{customer.name}}</p>
+                    </div>
+                    <div class="card__space-25">
+                      <span class="card__label">Expires</span>
+                      <p class="card__info">10/25</p>
+                    </div>
+                  </div>
+
+                  <div class="card__back card__part">
+                    <div class="card__black-line"></div>
+                    <div class="card__back-content">
+                      <div class="card__secret">
+                        <p class="card__secret--last">420</p>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+</div>
+

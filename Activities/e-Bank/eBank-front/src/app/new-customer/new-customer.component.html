@@ -1,0 +1,32 @@
+<section>
+  <div class="col col-md-6 center-horizontal-absolute">
+    <!-- Form -->
+    <br><br>
+    <h3 class="text-center"></h3>
+    <form [formGroup]="newCustomerFormGroup" (ngSubmit)="handleSaveCustomer()">
+    <div class="mb-3">
+      <label>Name</label>
+      <input type="text" class="form-control" required="" formControlName="name" placeholder="name...">
+      <span class="text-danger" *ngIf="newCustomerFormGroup.controls['name'].touched &&
+                   newCustomerFormGroup.controls['name'].errors &&
+                    newCustomerFormGroup.controls['name'].errors!['required']">Name Required</span>
+    </div>
+    <!-- End of Form -->
+    <!-- Form -->
+    <div class="mb-4">
+      <label>Email</label>
+      <input type="email" class="form-control" required="" formControlName="email" placeholder="email...">
+      <span class="text-danger" *ngIf="newCustomerFormGroup.controls['email'].touched &&
+                   newCustomerFormGroup.controls['email'].errors &&
+                    newCustomerFormGroup.controls['email'].errors!['required']">Email Required</span>
+    </div>
+    <!-- End of Form -->
+    <!-- Form -->
+      <div class="col-md-12">
+        <button [disabled]="!newCustomerFormGroup.valid"  type="submit" class="btn btn-success float-end">Save</button>
+      </div>
+    </form>
+    <!-- End of Form -->
+  </div>
+
+</section>
