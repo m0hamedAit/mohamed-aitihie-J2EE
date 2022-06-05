@@ -3,6 +3,8 @@ package ma.m0hamedait.ebankbackend.security.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import ma.m0hamedait.ebankbackend.security.ConfConstants;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,11 +22,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private AuthenticationManager authenticationManager;
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
     }
 
     @Override
@@ -41,24 +43,27 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void successfulAuthentication(HttpServletRequest request
             , HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
         User user = (User) authResult.getPrincipal();
-        Algorithm algorithm = Algorithm.HMAC256("secret"); // secret ne doit pas etre partager
+        Algorithm algorithm = Algorithm.HMAC256(ConfConstants.SECRET_KEY);
+        System.out.println(user.getUsername());
+        System.out.println(user.getPassword());
         String jwtAccessToken = JWT.create()
                 .withSubject(user.getUsername())
-                        .withExpiresAt(new Date(System.currentTimeMillis()+5*60*1000)) //1min
-                                .withIssuer(request.getRequestURL().toString())
-                                        .withClaim("roles", user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
-                                                .sign(algorithm);
+                .withExpiresAt(new Date(System.currentTimeMillis()+ 60*1000)) //access token expires after 1min
+                .withIssuer(request.getRequestURL().toString())
+                .withClaim("roles", user.getAuthorities().stream()
+                        .map(ga->ga.getAuthority()).collect(Collectors.toList()))
+                .sign(algorithm);
 
         String jwtRefreshToken = JWT.create()
                 .withSubject(user.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis()+15*60*1000))
+                .withExpiresAt(new Date(System.currentTimeMillis()+15*60*1000)) //refresh token expires after 15min
                 .withIssuer(request.getRequestURL().toString())
                 .sign(algorithm);
 
-        Map<String,String> idToken = new HashMap<>();
-        idToken.put("access-token", jwtAccessToken);
-        idToken.put("refresh-token", jwtRefreshToken);
+        Map<String,String> tokens = new HashMap<>();
+        tokens.put("access-token", jwtAccessToken);
+        tokens.put("refresh-token", jwtRefreshToken);
         response.setContentType("application/json");
-        new ObjectMapper().writeValue(response.getOutputStream(), idToken);  // envoyer idToken dans le corps de la reponse en format json
+        new ObjectMapper().writeValue(response.getOutputStream(), tokens);  // send tokens in response body
     }
 }

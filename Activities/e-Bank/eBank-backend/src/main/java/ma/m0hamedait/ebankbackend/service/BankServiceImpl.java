@@ -15,7 +15,6 @@ import ma.m0hamedait.ebankbackend.repositories.CustomerRepository;
 import ma.m0hamedait.ebankbackend.repositories.OperationRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -193,7 +192,7 @@ public class BankServiceImpl implements BankService {
         List<OperationDTO> operationDTOS = accountOperations.getContent().stream()
                 .map(op->mapper.fromOperation(op)).collect(Collectors.toList());
         accountHistoryDTO.setOperationDTOS(operationDTOS);
-        accountHistoryDTO.setAccountId(account.getId());
+        accountHistoryDTO.setId(account.getId());
         accountHistoryDTO.setBalance(account.getBalance());
         accountHistoryDTO.setCurrentPage(page);
         accountHistoryDTO.setPageSize(size);

@@ -7,6 +7,7 @@ import ma.m0hamedait.ebankbackend.exceptions.AccountNotFoundException;
 import ma.m0hamedait.ebankbackend.exceptions.BalanceNotSufficientException;
 import ma.m0hamedait.ebankbackend.exceptions.CustomerNotFoundException;
 import ma.m0hamedait.ebankbackend.service.BankService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,30 +16,36 @@ import java.util.List;
 @RestController
 @Slf4j
 @CrossOrigin("*")
+@RequestMapping("/api/v1/accounts")
 public class AccountRestController {
     BankService bankService;
 
-    @GetMapping("/accounts")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/")
     public List<AccountDTO> getAccounts(){
         return bankService.findAllAccounts();
     }
 
-    @GetMapping("/accounts/{accountId}")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/{accountId}")
     public AccountDTO getAccount(@PathVariable String accountId) throws AccountNotFoundException {
         return bankService.getAccount(accountId);
     }
 
-    @GetMapping("/accounts/{accountId}/operations")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/{accountId}/operations")
     public List<OperationDTO> getHistory(@PathVariable String accountId) throws AccountNotFoundException {
         return bankService.findAccountOperations(accountId);
     }
 
-    @GetMapping("/accounts/{accountId}/pageOperations")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @GetMapping("/{accountId}/pageOperations")
     public AccountHistoryDTO getAccountHistory(@PathVariable String accountId, @RequestParam(name="page",defaultValue = "0") int page, @RequestParam(name="size",defaultValue = "5") int size) throws AccountNotFoundException {
         return bankService.getAccountHistory(accountId, page, size);
     }
 
-    @PostMapping("/accounts")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping("/")
     public void saveAccount(@RequestBody AccountDTO accountDTO) throws CustomerNotFoundException {
        if(accountDTO instanceof SavingAccountDTO) {
            SavingAccountDTO account = (SavingAccountDTO) accountDTO;
@@ -50,30 +57,31 @@ public class AccountRestController {
        }
     }
 
-    @DeleteMapping("/accounts/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/{id}")
     public void deleteAccount(@PathVariable String id) throws AccountNotFoundException {
-        /*List<OperationDTO> operationsList = bankService.findAccountOperations(id);
-        for(OperationDTO operationDTO: operationsList){
-            bankService.deleteOperation(operationDTO.getId());
-        }*/
         bankService.deleteAccount(id);
     }
 
+
     //debit
-    @PostMapping("/accounts/debit")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping("/debit")
     public DebitDTO debit(@RequestBody DebitDTO debitDTO) throws AccountNotFoundException, BalanceNotSufficientException {
         System.out.println(debitDTO);
         this.bankService.debit(debitDTO.getAccountId(), debitDTO.getDescription(), debitDTO.getAmount());
         return debitDTO;
     }
 
-    @PostMapping("/accounts/credit")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping("/credit")
     public CreditDTO credit(@RequestBody CreditDTO creditDTO) throws AccountNotFoundException {
         this.bankService.credit(creditDTO.getAccountId(), creditDTO.getDescription(), creditDTO.getAmount());
         return creditDTO;
     }
 
-    @PostMapping("/accounts/transfer")
+    @PreAuthorize("hasRole('ROLE_USER')")
+    @PostMapping("/transfer")
     public void transfer(@RequestBody TransferRequestDTO transferRequestDTO) throws AccountNotFoundException, BalanceNotSufficientException {
         this.bankService.transfert(transferRequestDTO.getSenderId(), transferRequestDTO.getRecipientId(), transferRequestDTO.getAmount());
 

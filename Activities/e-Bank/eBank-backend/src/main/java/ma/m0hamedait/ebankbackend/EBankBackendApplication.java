@@ -1,6 +1,9 @@
 package ma.m0hamedait.ebankbackend;
 
 
+import com.github.javafaker.Faker;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import ma.m0hamedait.ebankbackend.dtos.CurrentAccountDTO;
 import ma.m0hamedait.ebankbackend.dtos.CustomerDTO;
 import ma.m0hamedait.ebankbackend.dtos.SavingAccountDTO;
@@ -8,6 +11,8 @@ import ma.m0hamedait.ebankbackend.dtos.SavingAccountDTO;
 import ma.m0hamedait.ebankbackend.exceptions.AccountNotFoundException;
 import ma.m0hamedait.ebankbackend.exceptions.BalanceNotSufficientException;
 import ma.m0hamedait.ebankbackend.exceptions.CustomerNotFoundException;
+import ma.m0hamedait.ebankbackend.security.entities.AppUser;
+import ma.m0hamedait.ebankbackend.security.service.AccountService;
 import ma.m0hamedait.ebankbackend.service.BankService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -18,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.stream.Stream;
 
+@SecurityScheme(name = "api", type = SecuritySchemeType.HTTP, scheme = "bearer", bearerFormat = "JWT")
 @SpringBootApplication
 public class EBankBackendApplication {
 
@@ -25,16 +31,31 @@ public class EBankBackendApplication {
         SpringApplication.run(EBankBackendApplication.class, args);
     }
 
-
     @Bean
-    CommandLineRunner start(BankService bankService) {
+    CommandLineRunner start(BankService bankService, AccountService accountService) {
         return args -> {
-            Stream.of("Mohamed", "Anas", "Amine").forEach(name -> {
-                System.out.println(name);
-                CustomerDTO customer = new CustomerDTO();
-                customer.setName(name);
-                customer.setEmail(name + "@gmail.com");
-                bankService.saveCustomer(customer);
+            Faker faker = new Faker();
+            Stream.of("ROLE_ADMIN", "ROLE_USER").forEach(role -> accountService.addRole(role));
+
+            for (int i = 0; i < 10; i++) {
+                String username = faker.name().username();
+                CustomerDTO customerDTO = new CustomerDTO(null, username, faker.internet().emailAddress());
+                AppUser appUser = new AppUser();
+                appUser.setUsername(username);
+                appUser.setPassword(username);
+                bankService.saveCustomer(customerDTO);
+                accountService.addUser(appUser);
+            }
+
+            AppUser admin = new AppUser();
+            admin.setUsername("admin");
+            admin.setPassword("admin");
+            accountService.addUser(admin);
+
+            accountService.findAll().forEach(appUser -> {
+                if(appUser.getUsername().equals("admin"))
+                    accountService.addRoleToUser(appUser.getUsername(), "ROLE_ADMIN");
+                accountService.addRoleToUser(appUser.getUsername(), "ROLE_USER");
             });
 
             bankService.findAllCustomers().forEach(customer -> {
@@ -62,8 +83,11 @@ public class EBankBackendApplication {
                     }
                 }
             });
+
+
         };
     }
+
 
     @Bean
     PasswordEncoder passwordEncoder(){

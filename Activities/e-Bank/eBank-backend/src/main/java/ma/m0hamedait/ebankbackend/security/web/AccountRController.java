@@ -31,8 +31,8 @@ public class AccountRController {
 
     @PostMapping("/roles")
     @PostAuthorize("hasAuthority('ADMIN')")
-    public AppRole saveRole(@RequestBody AppRole appRole){
-        return accountService.addRole(appRole);
+    public AppRole saveRole(@RequestBody String rolename){
+        return accountService.addRole(rolename);
     }
 
     @PostMapping("/addRoleToUser")
