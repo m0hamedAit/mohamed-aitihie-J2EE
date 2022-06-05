@@ -19,23 +19,8 @@ public class Bean implements Serializable {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getCclass() {
         return cclass;
     }
 
-    public void setCclass(String cclass) {
-        this.cclass = cclass;
-    }
-
-    public Property getProperty() {
-        return property;
-    }
-
-    public void setProperty(Property property) {
-        this.property = property;
-    }
 }

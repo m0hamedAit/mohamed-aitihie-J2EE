@@ -1,12 +1,8 @@
-package testAnnotations.metier;
+package tests.testXML.metier;
 
-import annotations.Autowired;
-import annotations.Component;
-import testAnnotations.dao.IDao;
+import tests.testXML.dao.IDao;
 
-@Component
 public class MetierImpl implements IMetier {
-    @Autowired
     private IDao dao;
 
     public MetierImpl() {
