@@ -1,5 +1,5 @@
 
-# TPs et Projets module Architecture JEE et Middlewares
+# TPs et Projets module Architecture J2EE et Middlewares
 
 <h2 align="center">TPs</h2>
 
